@@ -18,12 +18,15 @@ libxml_clear_errors();
 libxml_use_internal_errors($previous_value);
 $xpath = new DOMXPath($doc);
 
-$amount 		= trim($xpath->query('/html/body/div[4]/div[4]/div[2]/div/div/div/span/span')->item(0)->textContent);
-$percentRaised	= trim($xpath->query('/html/body/div[4]/div[4]/div[2]/div/div/div[4]/div')->item(0)->textContent);
-$daysLeft 		= trim($xpath->query('/html/body/div[4]/div[4]/div[2]/div/div/div[4]/div[2]/span[2]')->item(0)->textContent);
+if(is_object($xpath->query('/html/body/div[4]/div[4]/div[2]/div/div/div/span/span')->item(0))) {
+	$amount 		= trim($xpath->query('/html/body/div[4]/div[4]/div[2]/div/div/div/span/span')->item(0)->textContent);
+	$percentRaised	= trim($xpath->query('/html/body/div[4]/div[4]/div[2]/div/div/div[4]/div')->item(0)->textContent);
+	$daysLeft 		= trim($xpath->query('/html/body/div[4]/div[4]/div[2]/div/div/div[4]/div[2]/span[2]')->item(0)->textContent);
+
+	echo "$projectName: $daysLeft days left - $percentRaised ($amount) \n";
+}
 
 
-echo "$projectName: $daysLeft days left - $percentRaised ($amount) \n";
 
 }
 
